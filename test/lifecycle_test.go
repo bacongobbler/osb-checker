@@ -10,26 +10,19 @@ import (
 	uuid "github.com/satori/go.uuid"
 )
 
-var (
-	configFile string
-)
+var configFile = flag.String("f", "configs/config_mock.yaml", "Please specify the config file of service broker you want to test.")
 
-func init() {
-	// Parse some configuration fields from command line.
-	flag.StringVar(&configFile, "f", "configs/config_mock.yaml", "Please specify the config file of service broker you want to test.")
-	flag.Parse()
+func TestLifeCycle(t *testing.T) {
+	t.Parallel()
+
 	// Load configuration info into global CONF variable.
-	if err := Load(configFile); err != nil {
+	if err := Load(*configFile); err != nil {
 		panic(err)
 	}
 	// Initialize work
 	if err := common.InitClientWithAuthCtx(); err != nil {
 		panic(err)
 	}
-}
-
-func TestLifeCycle(t *testing.T) {
-	t.Parallel()
 
 	common.TestGetCatalog(t)
 
