@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/openservicebrokerapi/osb-checker.svg?branch=master)](https://travis-ci.org/openservicebrokerapi/osb-checker "Travis")
-
 # osb-checker
 
 An automatic checker to verify an Open Service Broker API implementation
